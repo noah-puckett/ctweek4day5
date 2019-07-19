@@ -36,6 +36,24 @@ describe('app routes', () => {
                 });
             });
     });  
+
+    it('RANDOM post route successful', () => {
+
+        return request(app)
+            .post('/api/v1/tweets?random=true')
+            .send({ 
+                handle: 'butts',
+                text: 'suuuuup', 
+            })
+            .then(res => {
+                expect(res.body).toEqual({
+                    _id: expect.any(String),
+                    handle: 'butts',
+                    text: expect.any(String),
+                    __v: 0
+                });
+            });
+    });  
       
 
     it('GET returns all Tweets', async() => {
